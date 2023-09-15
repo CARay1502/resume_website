@@ -3,11 +3,10 @@ from pathlib import Path
 import streamlit as st
 from PIL import Image, ImageDraw, ImageOps
 
-
 # --- PATH SETTINGS ---
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "styles" / "main.css"
-resume_file = current_dir / "assets" / "resume.pdf"
+resume_file = current_dir / "assets" / "resume_updated.pdf"
 profile_pic = current_dir / "assets" / "profile_pic.png"
 
 
@@ -26,13 +25,12 @@ SOCIAL_MEDIA = {
     "Twitter": "https://twitter.com",
 }
 PROJECTS = {
-    "🏆 Sales Dashboard - Comparing sales across three stores": "https://youtu.be/Sb0A9i6d320",
-    "🏆 Income and Expense Tracker - Web app with NoSQL database": "https://youtu.be/3egaMfE9388",
-    "🏆 Desktop Application - Excel2CSV converter with user settings & menubar": "https://youtu.be/LzCfNanQ_9c",
-    "🏆 MyToolBelt - Custom MS Excel add-in to combine Python & Excel": "https://pythonandvba.com/mytoolbelt/",
+
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
+
+# --- NAV BAR ---
 
 # --- LOAD CSS, PDF & PROFILE PIC --- 
 with open(css_file) as f:
@@ -40,10 +38,8 @@ with open(css_file) as f:
 with open(resume_file, "rb") as pdf_file:
     PDFbyte = pdf_file.read()
 profile_pic = Image.open(profile_pic)
-import streamlit as st
 
-# --- Business Card --- #
-# --- ORIGINAL BUISNESS CARD INFO --- 
+# --- Business Card --- 
 with st.container():
     col1, col2 = st.columns(2, gap="small")
 with col1:
@@ -57,8 +53,16 @@ with col2:
         data=PDFbyte,
         file_name=resume_file.name,
         mime="application/octet-stream",
+        use_container_width=True,
     )
-    st.write("📫", EMAIL)
+    #--- Experiemental Email Button --- 
+    st.button(
+        "📫 christianray1502@gmail.com",
+        use_container_width=True,
+        type="secondary",
+        on_click= "christianray1502@gmail.com",
+    )
+
 
 # --- SOCIAL MEDIA LINKS --- 
 st.write('\n')
@@ -67,36 +71,25 @@ for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
     cols[index].write(f"[{platform}]({link})")
 st.divider()
 
-# --- HARD SKILLS --- 
+# --- ABOUT ME --- 
 st.write('\n')
-st.subheader("Hard Skills")
-st.write(
-    """
-- Programming: Python, SQL, JavaScript, C
-- Web Development: Django, Swift, Steamlit (This portfolio is Streamlit!)
-    """
-)
-
-st.write('\n')
-st.subheader("Education") 
-st.write(
-    """
-- Graduated Elementary School
-- Graduated Middle School
-- Graduated High School 
-- Graduated Gaston College  (*expected*)
-- Gradiuated University of North Carolina At Charlotte  (*expected*)
+st.subheader("A little bit about me...")
+st.write("""
+😁 Hi, my name is Christian (you can also call me Chris)! I am an aspiring Software Engineer based in Charlotte. Having previous experience building and deploying web applications, I am seeking unique internships to both grow my experience and broaden my knowledge of the tech field before embarking on my software career upon graduation. 
 """
 )
-st.write('\n') 
-st.subheader("Work History")
+st.write("""
+🧑‍🎓 Both my academic background and future path are centered around Computer Science. I first attended Indiana Bible College, where I recieved my Associate degree in Christian Leadership. I am currently pursuing my Associate of Science through Gaston College with future plans to attend UNC Charlotte to a Bachelors degree in Computer Science. Along with multiple certifications and various coursework, I have built a repetoire for a prospective Software Engineer.
+"""
+)
 st.write(
     """
-- Website Manager at Indiana Bible College"""
-
+🎯 I have several different hobbies and passions. 🏋️‍♂️ I like to workout at the gym. 🚗 I LOVE cars, both driving and admiring. 💻 I also love Coding, I have several different ideas/projects that I'm always working on!
+"""
 )
+
 st.caption(
     """
-    - - Assisted in Data Collection/Publishing, Front-End & Back-End Work.
-    """
+Click on the navigation menu on the left to learn more!
+"""
 )
