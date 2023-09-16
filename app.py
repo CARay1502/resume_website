@@ -1,7 +1,9 @@
 from pathlib import Path
-
 import streamlit as st
+import time
 from PIL import Image, ImageDraw, ImageOps
+from streamlit_lottie import st_lottie
+
 
 # --- PATH SETTINGS ---
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
@@ -48,21 +50,26 @@ with col1:
 with col2: 
     st.title(NAME)
     st.write(DESCRIPTION)
-    st.download_button(
+    if st.download_button(
         label=" 📄 Download Resume",
         data=PDFbyte,
         file_name=resume_file.name,
         mime="application/octet-stream",
         use_container_width=True,
-    )
-    #--- Experiemental Email Button --- 
-    st.button(
-        "📫 christianray1502@gmail.com",
-        use_container_width=True,
-        type="secondary",
-        on_click= "christianray1502@gmail.com",
-    )
+    ):
+        st.toast('Yay!')
+        time.sleep(.5) 
+        st.toast('Thank you for checking out my Resume!', icon='🎉') 
 
+    # --- Experiemental Email Button --- 
+    def create_mailto_link(email):
+        return f"mailto:{email}"
+    
+    if st.button(
+        label="christianray1502@gmail.com",
+                 use_container_width=True):
+        mailto_link = create_mailto_link(EMAIL) 
+        st.write(f"Click [here]({mailto_link}) to email me.") 
 
 # --- SOCIAL MEDIA LINKS --- 
 st.write('\n')
@@ -71,11 +78,13 @@ for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
     cols[index].write(f"[{platform}]({link})")
 st.divider()
 
+# --- EXperiemental Social Media Icons ---
+
 # --- ABOUT ME --- 
 st.write('\n')
 st.subheader("A little bit about me...")
 st.write("""
-😁 Hi, my name is Christian (you can also call me Chris)! I am an aspiring Software Engineer based in Charlotte. Having previous experience building and deploying web applications, I am seeking unique internships to both grow my experience and broaden my knowledge of the tech field before embarking on my software career upon graduation. 
+😁 Hi, my name is Christian! I am an aspiring Software Engineer based in Charlotte. Having previous experience building and deploying web applications, I am seeking unique internships to both grow my experience and broaden my knowledge of the tech field before embarking on my software career upon graduation. 
 """
 )
 st.write("""
