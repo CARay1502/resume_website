@@ -2,8 +2,6 @@ from pathlib import Path
 import streamlit as st
 import time
 from PIL import Image, ImageDraw, ImageOps
-from streamlit_lottie import st_lottie
-
 
 # --- PATH SETTINGS ---
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
