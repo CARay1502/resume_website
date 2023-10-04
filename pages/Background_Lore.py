@@ -8,8 +8,9 @@ with open(css_file) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 
 # --- PAGE DESCRIPTION ---
-st.header("Technical Skills")
-st.write("As a current Computer Science Student and an Aspiring Software Engineer, it is through the diversification and application of various skills that I can become an effective workforce canadite.")
+st.header("More about the Technical Stuff...")
+st.write("As a current Computer Science Student and an Aspiring Software Engineer, a combination of my Hard and Soft skills have been developed both in and out of the classroom.") 
+st.write("Below are some of my current skills and focuses.") 
 
 # --- PROGRAMMING LANGUAGES --- 
 with st.container():
@@ -21,23 +22,24 @@ with st.container():
     with col2: 
         st.text("""
 - Python 
-    - Java
+    - JavaScript
         - C++
 """                
                 )
 st.empty()
 
- # --- ACADEMIC INTERESTS --- 
+ # --- SOFTSKILLS --- 
 with st.container():
     col1, col2=st.columns(2, gap="small")
 
     with col1: 
-        st.subheader("Academic Interests") 
+        st.subheader("Soft Skills") 
 
     with col2:
         st.text("""
-- Software Engineering
-    - Data Science
-        - Machine Learning 
+- Good Written and Oral Communication Skills 
+    - Strong Organization and Time Management
+        - Ability to Cooperate with Team and Management
 """
                 )
+        

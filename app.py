@@ -31,6 +31,8 @@ PROJECTS = {
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 
 # --- NAV BAR ---
+with st.sidebar:
+    st.caption("Don't judge my AI profile picture!") 
 
 # --- LOAD CSS, PDF & PROFILE PIC --- 
 with open(css_file) as f:
